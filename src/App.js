@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Main from './pages/Main'
+import PreRoom from './pages/PreRoom'
+import Room from './pages/Room'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  render() {
+    return (
+      <Router>
+        <div>
+          <Route exact path="/" 
+          render={(props) => <Main {...props} />} />
+          <Route exact path="/preroom/:room/:player" 
+          render={(props) => <PreRoom {...props} />} />
+          <Route exact path="/room/:room/:player" 
+          render={(props) => <Room {...props} />} />
+        </div>
+      </Router>
+    )  
+  }
 }
 
 export default App;
