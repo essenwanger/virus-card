@@ -13,6 +13,7 @@ class Main extends React.Component {
       disabledButton: false
     };
     this.onCreateRoom = this.onCreateRoom.bind(this);
+    this.onRules = this.onRules.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -40,6 +41,10 @@ class Main extends React.Component {
     }
   }
 
+  onRules() {
+    this.props.history.push('/rules')
+  }
+
   handleChange(event) {
     this.setState({name: event.target.value, invalidName: false});
   }
@@ -49,6 +54,7 @@ class Main extends React.Component {
       <Container fluid>
         <Row>
           <Col style={styleMain}>
+            <h3 style={{paddingBottom: '100px'}}>VIRUS APP</h3>
             <Form.Group>
               <Form.Control type="text" value={this.state.name} 
               isInvalid={this.state.invalidName}
@@ -59,6 +65,10 @@ class Main extends React.Component {
               block onClick={this.onCreateRoom}>
               Crear Partida
             </Button>
+            <Button variant="secondary" 
+              block onClick={this.onRules}>
+              Reglas
+            </Button>
           </Col>
         </Row>
       </Container>
@@ -68,7 +78,7 @@ class Main extends React.Component {
 
 const styleMain = {
   textAlign: 'center', 
-  paddingTop: '200px'
+  paddingTop: '100px'
 }
 
 export default Main;

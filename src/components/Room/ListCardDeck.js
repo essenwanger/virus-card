@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Form, Button } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import CardDeck from './CardDeck'
 
 class ListCardDeck extends React.Component {
@@ -58,7 +58,9 @@ class ListCardDeck extends React.Component {
       disabledCheck = number!==turn
       disabled = (number!==turn || (!this.state.descartar1 && !this.state.descartar2 && !this.state.descartar3 ))
       list = player===null? null : player.deck.map((card, i) =>
-        <CardDeck key={i} player={keyPlayer} disabled={disabledCheck || winner} card={card} pos={i} onPressTirar={this.props.onPressTirar} />
+        <CardDeck key={i} player={keyPlayer} disabled={disabledCheck || winner} card={card} 
+        pos={i} checked={this.state['descartar'+(i+1)]} onPressCheck={this.onPressCheck}
+        onPressTirar={this.props.onPressTirar} />
       );
     }
     return (
@@ -66,15 +68,14 @@ class ListCardDeck extends React.Component {
         Maso
         <Row>
           <Col>
-            <Row>
+            <Row style={{paddingBottom: '10px'}}>
               {list}
-            </Row><br/>
-            <React.Fragment>
-              <Form.Check inline label="1" type={'checkbox'} disabled={disabledCheck || winner} checked={this.state.descartar1} onChange={()=> this.onPressCheck(1)}/>
-              <Form.Check inline label="2" type={'checkbox'} disabled={disabledCheck || winner} checked={this.state.descartar2} onChange={()=> this.onPressCheck(2)}/>
-              <Form.Check inline label="3" type={'checkbox'} disabled={disabledCheck || winner} checked={this.state.descartar3} onChange={()=> this.onPressCheck(3)}/>
-              <Button variant="dark" disabled={disabled || winner} onClick={this.onClick}>Descartar</Button>
-            </React.Fragment>
+            </Row>
+            <Row>
+              <Col>
+                <Button variant="dark" disabled={disabled || winner} block onClick={this.onClick}>Descartar</Button>
+              </Col>
+            </Row>
           </Col>
         </Row>
       </React.Fragment>

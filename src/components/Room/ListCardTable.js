@@ -36,13 +36,6 @@ class ListCardTable extends React.Component {
       }
       turno = '(Turno)'
     }
-    /*let win = this.props.player.win === undefined ? null : 
-    (
-      )
-    let winComponent = null
-    if(win !== undefined){
-      winComponent
-    }*/
     let win = this.props.player.win
     let winComponent = []
     if(win !== undefined){
